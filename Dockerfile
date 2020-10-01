@@ -20,5 +20,4 @@ RUN /install-plugins.sh \
         docker \
         authorize-project
 
-
-USER 1001
+USER 0
