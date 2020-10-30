@@ -1,0 +1,96 @@
+---
+- hosts: localhost
+  tasks:
+
+    - name: Add Ondrej Sury's apt key (Debian).
+      apt_key:
+        url: https://packages.sury.org/php/apt.gpg
+        state: present
+
+    - name: Add Ondrej Sury's repo (Debian).
+      apt_repository:
+        repo: "deb https://packages.sury.org/php/ {{ ansible_distribution_release }} main"
+        update_cache: yes
+
+    - name: "Add package"
+      package:
+        name: "{{ item }}"
+      loop:
+        - "php7.3-cli"
+        - "php7.3-amqp"
+        - "php7.3-apcu"
+        - "php7.3-bcmath"
+        - "php7.3-bz2"
+        - "php7.3-calendar"
+        - "php7.3-cgi"
+        - "php7.3-common"
+        - "php7.3-ctype"
+        - "php7.3-curl"
+        - "php7.3-dba"
+        - "php7.3-dev"
+        - "php7.3-dom"
+        - "php7.3-ds"
+        - "php7.3-enchant"
+        - "php7.3-exif"
+        - "php7.3-fpm"
+        - "php7.3-ftp"
+        - "php7.3-gd"
+        - "php7.3-gettext"
+        - "php7.3-gmp"
+        - "php7.3-iconv"
+        - "php7.3-imagick"
+        - "php7.3-imap"
+        - "php7.3-intl"
+        - "php7.3-json"
+        - "php7.3-ldap"
+        - "php7.3-mbstring"
+        - "php7.3-memcached"
+        - "php7.3-mongodb"
+        - "php7.3-msgpack"
+        - "php7.3-mysqli"
+        - "php7.3-mysqlnd"
+        - "php7.3-odbc"
+        - "php7.3-opcache"
+        - "php7.3-pdo"
+        - "php7.3-pgsql"
+        - "php7.3-phar"
+        - "php7.3-phpdbg"
+        - "php7.3-posix"
+        - "php7.3-pspell"
+        - "php7.3-psr"
+        - "php7.3-redis"
+        - "php7.3-shmop"
+        - "php7.3-snmp"
+        - "php7.3-soap"
+        - "php7.3-sockets"
+        - "php7.3-sqlite3"
+        - "php7.3-sysvmsg"
+        - "php7.3-sysvsem"
+        - "php7.3-sysvshm"
+        - "php7.3-tidy"
+        - "php7.3-xdebug"
+        - "php7.3-xml"
+        - "php7.3-xmlreader"
+        - "php7.3-xmlrpc"
+        - "php7.3-xsl"
+        - "php7.3-zip"
+
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+
+    - name: Clear cache
+      command: apt-get clean all
+
+    - name: Install composer
+      get_url:
+        url: https://getcomposer.org/composer.phar
+        dest: /usr/local/bin/composer
+        mode: "0755"
+
+    - name: "Update composer"
+      command: "composer self-update --stable"
