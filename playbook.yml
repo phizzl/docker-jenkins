@@ -74,6 +74,64 @@
         - "php7.3-xmlrpc"
         - "php7.3-xsl"
         - "php7.3-zip"
+        - "php7.4-cli"
+        - "php7.4-amqp"
+        - "php7.4-apcu"
+        - "php7.4-bcmath"
+        - "php7.4-bz2"
+        - "php7.4-calendar"
+        - "php7.4-cgi"
+        - "php7.4-common"
+        - "php7.4-ctype"
+        - "php7.4-curl"
+        - "php7.4-dba"
+        - "php7.4-dev"
+        - "php7.4-dom"
+        - "php7.4-ds"
+        - "php7.4-enchant"
+        - "php7.4-exif"
+        - "php7.4-fpm"
+        - "php7.4-ftp"
+        - "php7.4-gd"
+        - "php7.4-gettext"
+        - "php7.4-gmp"
+        - "php7.4-iconv"
+        - "php7.4-imagick"
+        - "php7.4-imap"
+        - "php7.4-intl"
+        - "php7.4-json"
+        - "php7.4-ldap"
+        - "php7.4-mbstring"
+        - "php7.4-memcached"
+        - "php7.4-mongodb"
+        - "php7.4-msgpack"
+        - "php7.4-mysqli"
+        - "php7.4-mysqlnd"
+        - "php7.4-odbc"
+        - "php7.4-opcache"
+        - "php7.4-pdo"
+        - "php7.4-pgsql"
+        - "php7.4-phar"
+        - "php7.4-phpdbg"
+        - "php7.4-posix"
+        - "php7.4-pspell"
+        - "php7.4-psr"
+        - "php7.4-redis"
+        - "php7.4-shmop"
+        - "php7.4-snmp"
+        - "php7.4-soap"
+        - "php7.4-sockets"
+        - "php7.4-sqlite3"
+        - "php7.4-sysvmsg"
+        - "php7.4-sysvsem"
+        - "php7.4-sysvshm"
+        - "php7.4-tidy"
+        - "php7.4-xdebug"
+        - "php7.4-xml"
+        - "php7.4-xmlreader"
+        - "php7.4-xmlrpc"
+        - "php7.4-xsl"
+        - "php7.4-zip"
 
     - name: Remove useless packages from the cache
       apt:
@@ -86,11 +144,20 @@
     - name: Clear cache
       command: apt-get clean all
 
-    - name: Install composer
+    - name: Install composer in version 1
       get_url:
         url: https://getcomposer.org/composer.phar
         dest: /usr/local/bin/composer
         mode: "0755"
 
+    - name: Install composer in version 2
+      get_url:
+        url: https://getcomposer.org/composer.phar
+        dest: /usr/local/bin/composer2
+        mode: "0755"
+
     - name: "Update composer"
-      command: "composer self-update --stable"
+      command: "composer2 self-update --2"
+
+    - name: "Update composer"
+      command: "composer self-update --1"

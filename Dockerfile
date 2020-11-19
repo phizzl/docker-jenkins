@@ -15,4 +15,7 @@ RUN apt-get update && \
 
 RUN ansible-playbook -vv /tmp/playbook.yml
 
+COPY ./plugins.txt /tmp/plugins.txt
+RUN install-plugins.sh < /tmp/plugins.txt
+
 USER 1000

@@ -1,0 +1,17 @@
+dashboard-view
+view-job-filters
+cloudbees-folder
+monitoring
+disk-usage
+performance
+perfpublisher
+test-results-analyzer
+bootstraped-multi-test-results-report
+job-dsl
+build-pipeline-plugin
+jenkins-multijob-plugin
+workflow-aggregator
+scm-api
+git
+ssh
+
