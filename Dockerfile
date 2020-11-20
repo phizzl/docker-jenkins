@@ -12,11 +12,11 @@ COPY ./plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 # Setup password security for Jenkins
-COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/default-user.groovy
+COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
 
 # Install Ansible
 RUN apt-get update && \
-    apt-get install -y python3-pip apt-utils && \
+    apt-get install -y python3-pip apt-utils sshpass && \
     apt-get clean all && \
     apt-get autoremove -y && \
     pip3 install ansible

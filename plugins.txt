@@ -15,4 +15,7 @@ scm-api
 git
 ssh
 azure-ad
-
+xunit
+mattermost
+ansicolor
+htmlpublisher
