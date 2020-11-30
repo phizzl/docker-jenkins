@@ -19,3 +19,4 @@ xunit
 mattermost
 ansicolor
 htmlpublisher
+locale
