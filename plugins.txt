@@ -20,3 +20,4 @@ mattermost
 ansicolor
 htmlpublisher
 locale
+blueocean
