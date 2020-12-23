@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.271
+FROM jenkins/jenkins:2.272
 MAINTAINER Phizzl <the@phizzl.it>
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
