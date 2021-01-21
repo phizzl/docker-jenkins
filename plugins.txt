@@ -22,6 +22,5 @@ htmlpublisher
 locale
 blueocean
 git-parameter
-cloudbees-folder
 folder-auth
 greenballs
