@@ -20,7 +20,9 @@ mattermost
 ansicolor
 htmlpublisher
 locale
+jira
 blueocean
+blueocean-jira
 git-parameter
 folder-auth
 greenballs
