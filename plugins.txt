@@ -14,6 +14,7 @@ workflow-aggregator
 scm-api
 git
 ssh
+ssh-agent
 azure-ad
 xunit
 mattermost
