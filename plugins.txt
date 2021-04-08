@@ -27,3 +27,5 @@ blueocean-jira
 git-parameter
 folder-auth
 greenballs
+docker-plugin
+ec2
