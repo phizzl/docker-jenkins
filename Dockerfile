@@ -15,8 +15,9 @@ RUN install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
 
 # Install Ansible
-RUN apt-get update && \
-    apt-get install -y python3-pip apt-utils sshpass npm zip && \
+RUN curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash - && \
+    apt-get update && \
+    apt-get install -y python3-pip apt-utils sshpass nodejs npm zip && \
     apt-get clean all && \
     apt-get autoremove -y && \
     pip3 install ansible
