@@ -31,3 +31,4 @@ docker-plugin
 ec2
 zephyr-for-jira-test-management
 postbuild-task
+Office-365-Connector
