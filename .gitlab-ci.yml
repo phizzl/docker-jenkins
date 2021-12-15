@@ -3,6 +3,7 @@ image: phizzl/docker-compose:dind
 
 stages:
   - build
+  - test
 
 variables:
   DOCKER_BUILDKIT: 1
