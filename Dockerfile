@@ -17,6 +17,7 @@ COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
 # Install Ansible
 RUN curl -fsSL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get update && \
+    apt-get -yq upgrade && \
     apt-get install -y python3-pip apt-utils sshpass nodejs zip unzip rsync && \
     apt-get clean all && \
     apt-get autoremove -y && \
