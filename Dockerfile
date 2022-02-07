@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.328
+FROM jenkins/jenkins:2.333
 MAINTAINER Phizzl <the@phizzl.it>
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
@@ -18,7 +18,7 @@ COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
 RUN curl -fsSL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get update && \
     apt-get -yq upgrade && \
-    apt-get install -y python3-pip apt-utils sshpass nodejs zip unzip rsync && \
+    apt-get install -y python3-pip apt-utils sshpass nodejs zip unzip rsync wget && \
     apt-get clean all && \
     apt-get autoremove -y && \
     pip3 install --no-cache-dir ansible
