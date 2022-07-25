@@ -235,17 +235,17 @@
     - name: Install composer in version 1
       get_url:
         url: https://getcomposer.org/composer.phar
-        dest: /usr/local/bin/composer
+        dest: /usr/local/bin/composer-legacy
         mode: "0755"
 
     - name: Install composer in version 2
       get_url:
         url: https://getcomposer.org/composer.phar
-        dest: /usr/local/bin/composer2
+        dest: /usr/local/bin/composer
         mode: "0755"
 
     - name: "Update composer"
-      command: "composer2 self-update --2"
+      command: "composer self-update --2"
 
     - name: "Update composer"
-      command: "composer self-update --1"
+      command: "composer-legacy self-update --1"
