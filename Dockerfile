@@ -9,7 +9,7 @@ USER root
 
 # Preinstalling Jenkins plugins
 COPY ./plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
 # Setup password security for Jenkins
 COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
