@@ -244,6 +244,12 @@
         dest: /usr/local/bin/composer
         mode: "0755"
 
+    - name: Link composer for backwards compatibility
+      file:
+        state: link
+        path: /usr/local/bin/composer2
+        src: /usr/local/bin/composer
+
     - name: "Update composer"
       command: "composer self-update --2"
 
