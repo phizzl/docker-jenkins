@@ -21,6 +21,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y python3-pip apt-utils sshpass nodejs zip unzip rsync wget && \
     apt-get clean all && \
     apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* && \
     pip3 install --no-cache-dir ansible
 
 # Run Ansible playbook for installing PHP
