@@ -26,6 +26,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_10.x | bash - && \
 
 # Run Ansible playbook for installing PHP
 COPY ansible/ /tmp/ansible/
-RUN ansible-playbook -vv $(ls -d /tmp/ansible/*.yml)
+RUN ansible-playbook -vv $(ls -d /tmp/ansible/*.yml) && \
+    apt-get clean all && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 USER 1000
