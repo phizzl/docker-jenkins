@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+        cache_valid_time: 86400
+
+    - name: Install docker
+      package:
+        name: [docker-ce, docker-ce-cli, docker-compose-plugin]
+
+    - name: Copy docker-compose backwards compatibility script
+      copy:
+        src: docker-compose.sh
+        dest: /usr/local/bin/docker-compose
+        mode: "0755"
