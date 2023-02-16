@@ -1,5 +1,8 @@
 ---
-image: phizzl/docker-compose:dind
+include:
+  - project: packages/gitlab-templates/ci-cd-template-build-docker-images
+    ref: master
+    file: /templates/docker-build-image.template.yml
 
 stages:
   - build
@@ -10,12 +13,9 @@ variables:
 
 .build-docker:
   stage: build
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-  script:
-    - docker build --tag $CI_REGISTRY_IMAGE:$TAG --build-arg BUILDKIT_INLINE_CACHE=1 .
-    - docker push $CI_REGISTRY_IMAGE:$TAG
+  extends: .docker-image-build
+  variables:
+    DOCKER_BUILD_DESTINATION: $CI_REGISTRY_IMAGE:$TAG
 
 .container-security-scan:
   image: registry.gitlab.com/security-products/container-scanning:4
