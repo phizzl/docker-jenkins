@@ -1,7 +1,7 @@
 ---
 include:
   - project: packages/gitlab-templates/ci-cd-template-build-docker-images
-    ref: master
+    ref: v1.0.0
     file: /templates/docker-build-image.template.yml
   - template: Jobs/Container-Scanning.gitlab-ci.yml
 
