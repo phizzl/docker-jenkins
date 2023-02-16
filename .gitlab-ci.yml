@@ -13,10 +13,10 @@ workflow:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       variables:
-        DOCKER_BUILD_DESTINATION: ${CI_REGISTRY_IMAGE}:latest
+        DOCKER_BUILD_DESTINATION: $CI_REGISTRY_IMAGE:latest
     - if: $CI_COMMIT_TAG != ""
       variables:
-        DOCKER_BUILD_DESTINATION: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+        DOCKER_BUILD_DESTINATION: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
     - when: never
 
 variables:
@@ -28,4 +28,4 @@ build:
 
 container_scanning:
   variables:
-    CS_DEFAULT_BRANCH_IMAGE: ${DOCKER_BUILD_DESTINATION}
+    CS_DEFAULT_BRANCH_IMAGE: $DOCKER_BUILD_DESTINATION
