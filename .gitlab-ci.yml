@@ -24,12 +24,6 @@ variables:
 build:
   stage: build
   extends: .docker-image-build
-  rules:
-    - changes:
-        - Dockerfile
-        - plugins.txt
-        - groovy/*
-        - ansible/**
 
 container_scanning:
   variables:
