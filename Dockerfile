@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:lts-jdk11
-MAINTAINER Phizzl <the@phizzl.it>
+MAINTAINER Phillip Schleicher <phillip.schleicher@cec.valantic.com>
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 ENV JENKINS_USER admin
