@@ -16,7 +16,7 @@ COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
 
 # Install Ansible
 RUN apt-get update && \
-    apt-get install -y python3-pip apt-utils sshpass nodejs zip unzip rsync wget && \
+    apt-get install -y python3-pip apt-utils sshpass zip unzip rsync wget && \
     apt-get -yq full-upgrade && \
     apt-get clean all && \
     apt-get autoremove -y && \
