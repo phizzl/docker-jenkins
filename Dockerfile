@@ -15,19 +15,25 @@ RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 COPY groovy/ /usr/share/jenkins/ref/init.groovy.d/
 
 # Install Ansible
-RUN apt-get update && \
-    apt-get install -y python3-pip apt-utils sshpass zip unzip rsync wget && \
+RUN apt-get -yq update && \
+    apt-get -yq install python3-pip apt-utils sshpass zip unzip rsync wget && \
     apt-get -yq full-upgrade && \
-    apt-get clean all && \
-    apt-get autoremove -y && \
+    apt-get -yq clean all && \
+    apt-get -yq autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install --no-cache-dir ansible
 
 # Run Ansible playbook for installing PHP
 COPY ansible/ /tmp/ansible/
 RUN ansible-playbook -vv $(ls -d /tmp/ansible/*.yml) && \
-    apt-get clean all && \
-    apt-get autoremove -y && \
+    apt-get -yq clean all && \
+    apt-get -yq autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get -yq update && \
+    apt-get -yq full-upgrade && \
+    apt-get -yq clean all && \
+    apt-get -yq autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
 USER 1000
