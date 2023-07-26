@@ -28,7 +28,8 @@ COPY ansible/ /tmp/ansible/
 RUN ansible-playbook -vv $(ls -d /tmp/ansible/*.yml) && \
     apt-get -yq clean all && \
     apt-get -yq autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/ansible
 
 RUN apt-get -yq update && \
     apt-get -yq full-upgrade && \

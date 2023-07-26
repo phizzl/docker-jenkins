@@ -1,15 +1,49 @@
 ---
-- hosts: all
+- hosts: localhost
   become: true
   tasks:
-    - name: Update apt cache
+    - name: Update apt package manager
       apt:
         update_cache: true
         cache_valid_time: 86400
 
-    - name: Install docker
-      package:
-        name: [docker-ce, docker-ce-cli, docker-compose-plugin]
+    - name: Add Docker's official GPG key
+      apt_key:
+        state: present
+        url: https://download.docker.com/linux/debian/gpg
+
+    - name: Define expected fingerprint for verification
+      set_fact:
+        apt_fingerprint: "9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88"
+
+    - name: Verify Docker's official GPG key fingerprint
+      shell: "apt-key fingerprint 0EBFCD88 | grep '{{ apt_fingerprint }}'"
+
+    - name: Determine system release codename
+      register: internal_register_determine_system_release_codename
+      shell: . /etc/os-release && echo "$VERSION_CODENAME"
+
+    - name: Extract system release codename from output
+      set_fact:
+        system_release_codename: "{{ internal_register_determine_system_release_codename.stdout }}"
+
+    - name: Add apt repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/debian {{ system_release_codename }} stable
+        state: present
+        update_cache: true
+
+    - name: Install Docker CE package
+      apt:
+        install_recommends: false
+        name: docker-ce
+        state: latest
+
+    - name: Install Docker Compose plugin
+      apt:
+        install_recommends: false
+        name: docker-compose-plugin
+        state: latest
 
     - name: Copy docker-compose backwards compatibility script
       copy:
