@@ -21,7 +21,7 @@ RUN apt-get -yq update && \
     apt-get -yq clean all && \
     apt-get -yq autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
-    pip3 install --no-cache-dir ansible
+    pip3 install --no-cache-dir --break-system-packages ansible
 
 # Run Ansible playbook for installing PHP
 COPY ansible/ /tmp/ansible/
